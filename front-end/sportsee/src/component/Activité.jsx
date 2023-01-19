@@ -9,6 +9,7 @@ import {
   Legend,
 } from "recharts";
 import styled from "styled-components";
+import { PropTypes } from "prop-types";
 
 const Tooltips = styled.div`
   background-color: #E60000;
@@ -19,13 +20,16 @@ const Tooltips = styled.div`
 `
 
 const ContainerBarChart = styled.div`
+  display: flex;
   background-color: #FBFBFB;
-  width: 835px;
+  width: 750px;
+  height: 320px; 
+  margin-top: 70px;
 `
 
 
 export default function Activité({userActivity}) {
- 
+console.log(userActivity)
   
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -42,7 +46,7 @@ const CustomTooltip = ({ active, payload }) => {
   return (
     <ContainerBarChart>
     <BarChart
-      width={835}
+      width={750}
       height={320}
       data={userActivity.sessions}
       margin={{
