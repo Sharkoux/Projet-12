@@ -5,7 +5,13 @@ import Erreur from './error'
 import styled from 'styled-components'
 import Activité from '../component/Activité'
 import Tag from '../component/tag'
-import energy from '../asset/energy.svg'
+import energy from '../asset/energy.png'
+import proteine from '../asset/protein-icon.png'
+import lipide from '../asset/cheeseburger.png'
+import apple from '../asset/apple.png'
+import Durée from '../component/Durée'
+
+
 
 const DivProfil = styled.div`
     margin: 110px;
@@ -13,6 +19,7 @@ const DivProfil = styled.div`
     margin-bottom: 0px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     .NameColor {
         color: red;
     }
@@ -32,19 +39,29 @@ const DivProfil = styled.div`
 `
 
 function Profil() {
+    let res;
     const { id } = useParams()
-    const {userData, userActivity, error} = useCallData(id)
+    const {userData, userActivity, userSession, error} = useCallData(id)
 
     if(error) {
         return <Erreur />
     }
 
-    if(userData) {
-        console.log(userData.keyData)
+    if(userData.keyData) {
+        
+        const formatData = {
+        calorieCount: {label: 'Calories', icon: {energy}},
+        carbohydrateCount: {label: 'Glucides', icon: {apple}},
+        lipIdCount: {label: 'Lipides', icon: {lipide}},
+        proteinCount: {label: 'Proteines', icon: {proteine}},
+      }
+
+        res = Object.entries(userData?.keyData).map(([key, value], index) => {
+        return {key, value, label: formatData[key].label, icon: formatData[key].icon}
+      })
+       
     }
     
-
-
     
     return (
         <DivProfil>
@@ -52,12 +69,16 @@ function Profil() {
            <p className='title'>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
            <Activité userActivity={userActivity}/>
            <div className='TagContainer'>
-            {/* {userData?.keyData.map(item => {
-                return 
+            {res?.map((item, index) => {
+                return (
+                    <Tag  keydata={item} key={index}/>
+                )
+                
             }
-            )} */}
-            <Tag image={energy} keydata={""}/>
-            <Tag image={energy} keydata={""}/>
+            )}
+            <Durée datas={userSession}/>
+            
+            
            </div>
         </DivProfil>
        

@@ -116,7 +116,7 @@
     "USER_AVERAGE_SESSIONS": [
         {
             "userId": 12,
-            " sessions": [
+            "sessions": [
                 {
                     "day": 1,
                     "sessionLength": 30
