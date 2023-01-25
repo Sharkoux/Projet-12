@@ -72,7 +72,7 @@ export default function Durée({ datas }) {
       >
         Durée moyenne des sessions
       </text>
-      <XAxis tickLine={false} axisLine={false}  tickFormatter={formatXAxis} style={{fontSize: 12}}  />
+      <XAxis tickLine={false} axisLine={false}  tickFormatter={formatXAxis} style={{fontSize: 12, color: '#FFFFFF'}}  />
       <YAxis tickLine={false} axisLine={false} hide={true} padding={{top: 70}} />
       <Tooltip content={<CustomTooltip />} />
       <Line type="monotone" dataKey="sessionLength" stroke="white" legendType="none" />

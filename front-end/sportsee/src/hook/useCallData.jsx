@@ -23,20 +23,23 @@ function useCallData(id) {
         const userActivitys = dataUser.USER_ACTIVITY.find((item) => item.userId === parseInt(id))
        
         const userSessions = dataUser.USER_AVERAGE_SESSIONS.find((item) => item.userId === parseInt(id))
+
+        const userPerformances = dataUser.USER_PERFORMANCE.find((item) => item.userId === parseInt(id))
         
-        if(!userDatas || !userActivitys || !userSessions) {
+        if(!userDatas || !userActivitys || !userSessions || !userPerformances) {
             throw new Response('Not Found', { status: 404 })
         }
         setUserData(userDatas);
         setUserActivity(userActivitys)
         setUserSession(userSessions)
+        setUserPerformance(userPerformances)
          })
         .catch((err) => {
             setError(err)
         })
     }, [id])
 
-    return { userData, userActivity, userSession, error }
+    return { userData, userActivity, userSession, userPerformance, error }
 }
 
 export default useCallData

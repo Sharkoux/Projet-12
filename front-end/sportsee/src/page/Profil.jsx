@@ -10,16 +10,18 @@ import proteine from '../asset/protein-icon.png'
 import lipide from '../asset/cheeseburger.png'
 import apple from '../asset/apple.png'
 import Durée from '../component/Durée'
+import RadarCharts from '../component/Radar'
+import Score from '../component/Score'
 
 
 
 const DivProfil = styled.div`
-    margin: 110px;
+    margin: 4%;
     margin-top: 60px;
     margin-bottom: 0px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     .NameColor {
         color: red;
     }
@@ -33,15 +35,19 @@ const DivProfil = styled.div`
     .TagContainer {
         display: flex;
         flex-direction: column;
-        margin: 30px;
+        width: 20%;
         margin-top: 70px;
+    }
+    .ChartsContainer {
+        display: flex;
+        width: 700px;
     }
 `
 
 function Profil() {
     let res;
     const { id } = useParams()
-    const {userData, userActivity, userSession, error} = useCallData(id)
+    const {userData, userActivity, userSession, userPerformance, error} = useCallData(id)
 
     if(error) {
         return <Erreur />
@@ -76,9 +82,11 @@ function Profil() {
                 
             }
             )}
-            <Durée datas={userSession}/>
-            
-            
+           </div>
+           <div className='ChartsContainer'>
+           <Durée datas={userSession}/>
+           <RadarCharts datas={userPerformance} />
+           <Score datas={userData}/>
            </div>
         </DivProfil>
        

@@ -2,13 +2,13 @@ import styled from "styled-components"
 import PropTypes from 'prop-types'
 
 const TagContainer = styled.div`
-    width: 255px;
-    height: 125px;
+    width: 100%;
     background-color: #FBFBFB;
     display: flex;
-    flex-wrap: wrap;
     margin-bottom: 30px;
     align-items: center;
+    overflow: hidden;
+    word-break: break-word;
     .ImgTag {
         height: 60px;
         margin: 32px;

@@ -22,9 +22,12 @@ const Tooltips = styled.div`
 const ContainerBarChart = styled.div`
   display: flex;
   background-color: #FBFBFB;
-  width: 750px;
+  width: 75%;
   height: 320px; 
   margin-top: 70px;
+  .recharts-surface {
+    width: 100%;
+  }
 `
 
 
@@ -46,7 +49,7 @@ const CustomTooltip = ({ active, payload }) => {
   return (
     <ContainerBarChart>
     <BarChart
-      width={750}
+      width={950}
       height={320}
       data={userActivity.sessions}
       margin={{
@@ -55,6 +58,7 @@ const CustomTooltip = ({ active, payload }) => {
         left: 30,
         bottom: 5
       }}
+      style={{width: '100%'}}
       
     >
     <Legend verticalAlign="top" align="right"  iconType="circle" iconSize={9} wrapperStyle={{marginRight: "50px", fontSize: "17px", paddingBottom: "35px", fontWeight: "bold"}}/>
