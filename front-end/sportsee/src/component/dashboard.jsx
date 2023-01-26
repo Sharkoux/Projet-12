@@ -12,7 +12,7 @@ const ContainerDash = styled.div`
     width: 120px;
     background: #020203;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    height: 140%;
+    height: 100%;
     color: white;
     align-items: center;
     position: absolute;

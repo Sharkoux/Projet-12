@@ -39,8 +39,12 @@ const DivProfil = styled.div`
         margin-top: 70px;
     }
     .ChartsContainer {
+        margin-top: 30px;
         display: flex;
-        width: 700px;
+        gap: 30px;
+    }
+    .ActivityContainer {
+        width: 75%
     }
 `
 
@@ -73,7 +77,15 @@ function Profil() {
         <DivProfil>
            <h1 className='titleTxt'>Bonjour <span className='NameColor'>{userData?.userInfos?.firstName}</span></h1>
            <p className='title'>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+           <div className='ActivityContainer'>
            <Activité userActivity={userActivity}/>
+           
+           <div className='ChartsContainer'>
+           <Durée datas={userSession}/>
+           <RadarCharts datas={userPerformance} />
+           <Score datas={userData}/>
+           </div>
+           </div>
            <div className='TagContainer'>
             {res?.map((item, index) => {
                 return (
@@ -82,11 +94,6 @@ function Profil() {
                 
             }
             )}
-           </div>
-           <div className='ChartsContainer'>
-           <Durée datas={userSession}/>
-           <RadarCharts datas={userPerformance} />
-           <Score datas={userData}/>
            </div>
         </DivProfil>
        

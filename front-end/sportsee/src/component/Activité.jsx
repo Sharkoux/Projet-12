@@ -22,7 +22,7 @@ const Tooltips = styled.div`
 const ContainerBarChart = styled.div`
   display: flex;
   background-color: #FBFBFB;
-  width: 75%;
+  width: 100%;
   height: 320px; 
   margin-top: 70px;
   .recharts-surface {
@@ -74,8 +74,8 @@ const CustomTooltip = ({ active, payload }) => {
       
       <Tooltip content={<CustomTooltip />}/>
       
-      <Bar barSize={6} name="Poids(kg)" dataKey="kilogram"  fill="#282D30" />
-      <Bar barSize={6} name="Calorie brûlées(kCal)" dataKey="calories" fill="#E60000" />
+      <Bar barSize={6} name="Poids(kg)" dataKey="kilogram"  fill="#282D30" cornerRadius={25} radius={[25, 25, 0, 0]}  />
+      <Bar barSize={6} name="Calorie brûlées(kCal)" dataKey="calories" fill="#E60000" radius={[25, 25, 0, 0]} />
       <YAxis orientation="right"  tickLine={false} axisLine={false}  />
     </BarChart>
     </ContainerBarChart>
