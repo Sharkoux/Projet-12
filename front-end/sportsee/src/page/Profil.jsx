@@ -22,29 +22,45 @@ const DivProfil = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    
     .NameColor {
         color: red;
     }
     .title {
         font-size: 18px;
-        width: 100%
+        width: 100%;
+        @media only screen and (max-width : 1440px) {
+            font-size: 16px;
+        }
     }
     .titleTxt {
         width: 100%;
+        @media only screen and (max-width : 1440px) {
+            font-size: 28px;
+        }
     }
     .TagContainer {
         display: flex;
         flex-direction: column;
         width: 20%;
         margin-top: 70px;
+        @media only screen and (max-width : 1500px) {
+            flex-direction: row;
+            width: 100%;
+            gap: 20px;
+          }
     }
     .ChartsContainer {
         margin-top: 30px;
         display: flex;
-        gap: 30px;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
     .ActivityContainer {
         width: 75%
+        @media (max-width: 1024px) {
+            width: 100%
+          }
     }
 `
 

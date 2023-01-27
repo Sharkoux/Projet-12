@@ -4,9 +4,7 @@ import {
   Line,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
-  Legend,
   ReferenceArea
 } from "recharts";
 import styled from "styled-components";
@@ -22,9 +20,20 @@ const Tooltips = styled.div`
 
 
 export default function Durée({ datas }) {
-  console.log(datas)
 
-  const DateFormat = ["L","M","M","J", "V", "S", "D"]
+  if(!datas.sessions) {
+    return
+  }
+
+  const dict = [
+  {data: "L", position: 1},
+  {data: "M", position: 2},
+  {data: "M", position: 3},
+  {data: "J", position: 4},
+  {data: "V", position: 5},
+  {data: "S", position: 6},
+  {data: "D", position: 7}
+]
 
 
   const CustomTooltip = ({ active, payload }) => {
@@ -55,14 +64,16 @@ export default function Durée({ datas }) {
     );
   }
 
-  const formatXAxis = (tickItem) => {
-    return DateFormat[tickItem]
-  }
-  
 
+  const resp = datas.sessions.map((item) => {
+    const meta = dict.find(g => g.position === Number(item.day));
+    const global = { ...item, ...meta };
+    const {day, ...rest} = global;
+    return rest
+  }).sort((a, b) => a.position - b.position);
 
   return (
-    <LineChart width={260} height={250} data={datas.sessions}
+    <LineChart width={260} height={250} data={resp}
       margin={{ top: 5, right: 12, left: 12, bottom: 5 }} style={{ background: '#FF0000', borderRadius: 5 }}>
       <text
         x='7%'
@@ -72,7 +83,7 @@ export default function Durée({ datas }) {
       >
         Durée moyenne des sessions
       </text>
-      <XAxis tickLine={false} axisLine={false}  tickFormatter={formatXAxis} style={{fontSize: 12, color: '#FFFFFF'}}  />
+      <XAxis tickLine={false} axisLine={false}  dataKey='data' style={{fontSize: 12, color: '#FFFFFF'}}  />
       <YAxis tickLine={false} axisLine={false} hide={true} padding={{top: 70}} />
       <Tooltip content={<CustomTooltip />} />
       <Line type="monotone" dataKey="sessionLength" stroke="white" legendType="none" />
