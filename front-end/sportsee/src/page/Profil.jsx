@@ -67,52 +67,53 @@ const DivProfil = styled.div`
 function Profil() {
     let res;
     const { id } = useParams()
-    const {userData, userActivity, userSession, userPerformance, error} = useCallData(id)
+    const { userData, userActivity, userSession, userPerformance, error } = useCallData(id)
 
-    if(error) {
+    if (error) {
         return <Erreur />
     }
 
-    if(userData.keyData) {
-        
+    if (userData.keyData) {
+
         const formatData = {
-        calorieCount: {label: 'Calories', icon: {energy}},
-        carbohydrateCount: {label: 'Glucides', icon: {apple}},
-        lipIdCount: {label: 'Lipides', icon: {lipide}},
-        proteinCount: {label: 'Proteines', icon: {proteine}},
-      }
+            calorieCount: { label: 'Calories', icon: { energy } },
+            carbohydrateCount: { label: 'Glucides', icon: { apple } },
+            lipIdCount: { label: 'Lipides', icon: { lipide } },
+            proteinCount: { label: 'Proteines', icon: { proteine } },
+        }
 
         res = Object.entries(userData?.keyData).map(([key, value], index) => {
-        return {key, value, label: formatData[key].label, icon: formatData[key].icon}
-      })
-       
+            return { key, value, label: formatData[key].label, icon: formatData[key].icon }
+        })
+
     }
-    
-    
+
+    console.log(userData)
+
     return (
         <DivProfil>
-           <h1 className='titleTxt'>Bonjour <span className='NameColor'>{userData?.userInfos?.firstName}</span></h1>
-           <p className='title'>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
-           <div className='ActivityContainer'>
-           <Activité userActivity={userActivity}/>
-           
-           <div className='ChartsContainer'>
-           <Durée datas={userSession}/>
-           <RadarCharts datas={userPerformance} />
-           <Score datas={userData}/>
-           </div>
-           </div>
-           <div className='TagContainer'>
-            {res?.map((item, index) => {
-                return (
-                    <Tag  keydata={item} key={index}/>
-                )
-                
-            }
-            )}
-           </div>
+            <h1 className='titleTxt'>Bonjour <span className='NameColor'>{userData?.data?.userInfos?.firstName}</span></h1>
+            <p className='title'>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+            <div className='ActivityContainer'>
+                <Activité userActivity={userActivity} />
+
+                <div className='ChartsContainer'>
+                    <Durée datas={userSession} />
+                    <RadarCharts datas={userPerformance} />
+                    <Score datas={userData} />
+                </div>
+            </div>
+            <div className='TagContainer'>
+                {res?.map((item, index) => {
+                    return (
+                        <Tag keydata={item} key={index} />
+                    )
+
+                }
+                )}
+            </div>
         </DivProfil>
-       
+
     )
 }
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-
+import React from 'react'
+import API from '../API/Api'
 
 function useCallData(id) {
     const [userData, setUserData] = useState([])
@@ -8,35 +9,37 @@ function useCallData(id) {
     const [userPerformance, setUserPerformance] = useState([])
     const [error, setError] = useState(null)
 
-    useEffect(() => {
-        Promise.all([
-            fetch('/data.json'),
-            fetch('/data.json')
-        ])
-        .then(([resUser, resTest]) => 
-        Promise.all([resUser.json(), resTest.json()])
-        )
-        .then(([dataUser, dataTest]) => {
-        
-        const userDatas = dataUser.USER_MAIN_DATA.find((item) => item.id === parseInt(id))
-        
-        const userActivitys = dataUser.USER_ACTIVITY.find((item) => item.userId === parseInt(id))
-       
-        const userSessions = dataUser.USER_AVERAGE_SESSIONS.find((item) => item.userId === parseInt(id))
+   
+    useEffect( () => {
+        async function getData() {
+            const callAPI = new API()
+            await callAPI.get(`${id}`)
+            .then((data) => {
+                
+                setUserData(data);
+                /*
+                const userDatas = dataUser.USER_MAIN_DATA.find((item) => item.id === parseInt(id))
 
-        const userPerformances = dataUser.USER_PERFORMANCE.find((item) => item.userId === parseInt(id))
-        
-        if(!userDatas || !userActivitys || !userSessions || !userPerformances) {
-            throw new Response('Not Found', { status: 404 })
+                const userActivitys = dataUser.USER_ACTIVITY.find((item) => item.userId === parseInt(id))
+
+                const userSessions = dataUser.USER_AVERAGE_SESSIONS.find((item) => item.userId === parseInt(id))
+
+                const userPerformances = dataUser.USER_PERFORMANCE.find((item) => item.userId === parseInt(id))
+
+                if (!userDatas || !userActivitys || !userSessions || !userPerformances) {
+                    throw new Response('Not Found', { status: 404 })
+                }
+                
+                setUserActivity(userActivitys)
+                setUserSession(userSessions)
+                setUserPerformance(userPerformances)
+                */
+            })
+            .catch((err) => {
+                setError(err)
+            })
         }
-        setUserData(userDatas);
-        setUserActivity(userActivitys)
-        setUserSession(userSessions)
-        setUserPerformance(userPerformances)
-         })
-        .catch((err) => {
-            setError(err)
-        })
+       getData()  
     }, [id])
 
     return { userData, userActivity, userSession, userPerformance, error }

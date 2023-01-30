@@ -12,15 +12,15 @@ import { PropTypes } from "prop-types";
 
 
 export default function Score({ datas }) {
-
+  console.log(datas)
   let scores; 
   const color = ["red", "white"]
 
-  if(datas.todayScore) {
-   scores = datas.todayScore;
+  if(datas.data.todayScore) {
+   scores = datas.data.todayScore;
   }
-  if(datas.score) {
-    scores = datas.score
+  if(datas.data.score) {
+    scores = datas.data.score
   }
   
   const array = [{todayScore: scores, fill: "red"}, {todayScore: 1, fill: "white"}]
