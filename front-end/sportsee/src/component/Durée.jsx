@@ -8,8 +8,10 @@ import {
   ReferenceArea
 } from "recharts";
 import styled from "styled-components";
-import { PropTypes } from "prop-types";
+import { useParams } from "react-router-dom";
+import useCallUserSession from "../hook/useCallUserSession";
 
+// Rules css (styled-component)
 const Tooltips = styled.div`
     background: white;
     font-size: 15px;
@@ -18,13 +20,26 @@ const Tooltips = styled.div`
 `
 
 
+/**
+ * Generate LineCharts with user data
+ * @return { ReactDOM }
+ */
 
-export default function Durée({ datas }) {
 
-  if(!datas.sessions) {
+export default function Durée() {
+    // Retrieve ID with hook useParams
+  const { id } = useParams()
+  // Call data Session for user with hook useCallUserSession (params: ID)
+  const { userSession, error } = useCallUserSession(id)
+
+
+
+  //if no data, return
+  if(!userSession.data?.sessions) {
     return
   }
 
+  //Create Dictionary for format data
   const dict = [
   {data: "L", position: 1},
   {data: "M", position: 2},
@@ -35,7 +50,7 @@ export default function Durée({ datas }) {
   {data: "D", position: 7}
 ]
 
-
+  //Create Custom Tooltip  
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -47,6 +62,7 @@ export default function Durée({ datas }) {
 
   }
 
+  // Add band for style component ()
   const ReferenceBands = () => {
 
     const bands =
@@ -64,14 +80,15 @@ export default function Durée({ datas }) {
     );
   }
 
-
-  const resp = datas.sessions.map((item) => {
+// Format Data, add days and position
+  const resp = userSession.data.sessions.map((item) => {
     const meta = dict.find(g => g.position === Number(item.day));
     const global = { ...item, ...meta };
     const {day, ...rest} = global;
     return rest
   }).sort((a, b) => a.position - b.position);
 
+  // Return LineChart component
   return (
     <LineChart width={260} height={250} data={resp}
       margin={{ top: 5, right: 12, left: 12, bottom: 5 }} style={{ background: '#FF0000', borderRadius: 5 }}>

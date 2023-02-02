@@ -14,6 +14,11 @@ const Links = styled(Link)`
    justify-content: center
 `
 
+/**
+ * Add component Page Error
+ * @return { ReactDOM }
+ */
+
 function Erreur() {
     return (
         <div >

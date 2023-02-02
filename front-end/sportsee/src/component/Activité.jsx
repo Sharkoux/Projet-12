@@ -9,8 +9,11 @@ import {
   Legend,
 } from "recharts";
 import styled from "styled-components";
-import { PropTypes } from "prop-types";
+import { useParams } from "react-router-dom";
+import useCallUserActivity from "../hook/useCallUserActivity";
 
+
+// Rules css (styled-component)
 const Tooltips = styled.div`
   background-color: #E60000;
   color: white;
@@ -31,10 +34,18 @@ const ContainerBarChart = styled.div`
   
 `
 
+/**
+ * Generate chartBar with user data
+ * @return { ReactDOM }
+ */
 
-export default function Activité({ userActivity }) {
-  console.log(userActivity)
+export default function Activité() {
+  // Retrieve ID with hook useParams
+  const { id } = useParams()
+  // Call data Activity for user with hook useCallUserActivity (params: ID)
+  const { userActivity, error } = useCallUserActivity(id)
 
+  // Add CustomToolTip 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -47,12 +58,14 @@ export default function Activité({ userActivity }) {
 
   }
 
+
+  // Return Component BarChart with data user
   return (
     <ContainerBarChart>
       <BarChart
         width={1000}
         height={320}
-        data={userActivity.sessions}
+        data={userActivity.data?.sessions}
         margin={{
           top: 25,
           right: 30,

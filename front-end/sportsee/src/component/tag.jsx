@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import PropTypes from 'prop-types'
 
+
+// Rules css (styled-component)
 const TagContainer = styled.div`
     width: 100%;
     background-color: #FBFBFB;
@@ -23,17 +25,23 @@ const TagContainer = styled.div`
 `
 
 
+/**
+ * Generate Tags component with user data
+ * @param { Object } 
+ * @return { ReactDOM }
+ */
 
-function Tag({keydata}) {
+function Tag({ keydata }) {
 
-   
+
+    // Return Tag component
     return (
         <TagContainer >
-            <img className="ImgTag" src={Object.values(keydata.icon)[0]}/>
+            <img className="ImgTag" src={Object.values(keydata.icon)[0]} />
             <div>
-            <p className="TagValue">{keydata.key === 'calorieCount' ? new Intl.NumberFormat('en-IN', {style: 'decimal', maximumFractionDigits: 0}).format(keydata?.value) + "kCal"
-            : new Intl.NumberFormat('fr', {style: 'unit', unit: 'gram'}).format(keydata?.value)}</p>
-            <p className="TagData">{keydata.label}</p>
+                <p className="TagValue">{keydata.key === 'calorieCount' ? new Intl.NumberFormat('en-IN', { style: 'decimal', maximumFractionDigits: 0 }).format(keydata?.value) + "kCal"
+                    : new Intl.NumberFormat('fr', { style: 'unit', unit: 'gram' }).format(keydata?.value)}</p>
+                <p className="TagData">{keydata.label}</p>
             </div>
 
         </TagContainer>

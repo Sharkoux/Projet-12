@@ -1,4 +1,10 @@
 
+
+/**
+ * @class
+ * @classdesc Create class for call API (get/post/patch/delete)
+ */
+
 class API {
   constructor() {
     this.baseApi = 'http://localhost:3100/user'

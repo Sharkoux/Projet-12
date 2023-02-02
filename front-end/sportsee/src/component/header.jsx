@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import logo from '../asset/LogoSportSee.png'
 import styled from 'styled-components'
 
+// Rules css (styled-component)
 const ContainerHeader = styled.div`
     display: flex;
     height: 90px;
@@ -24,6 +25,13 @@ const ContainerLink = styled.div`
         color: white;
     }
 `
+
+
+
+/**
+ * Generate Header component
+ * @return { ReactDOM }
+ */
 
 function Header() {
    

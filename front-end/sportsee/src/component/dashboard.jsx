@@ -6,6 +6,8 @@ import icon2 from '../asset/icon2.png'
 import icon3 from '../asset/icon3.png'
 import icon4 from '../asset/icon4.png'
 
+
+// Rules css (styled-component)
 const ContainerDash = styled.div`
     display: flex;
     flex-direction: column;
@@ -35,23 +37,26 @@ const ContainerDash = styled.div`
     }
 `
 
-
+/**
+ * Generate dashboard component
+ * @return { ReactDOM }
+ */
 function Dashboard() {
-    
+
 
     return (
         <ContainerDash>
             <div className='ContainerLink'>
-                <NavLink> 
+                <NavLink>
                     <img src={icon1}></img>
                 </NavLink>
-                <NavLink> 
+                <NavLink>
                     <img src={icon2}></img>
                 </NavLink>
-                <NavLink> 
+                <NavLink>
                     <img src={icon3}></img>
                 </NavLink>
-                <NavLink> 
+                <NavLink>
                     <img src={icon4}></img>
                 </NavLink>
             </div>

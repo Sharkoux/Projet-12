@@ -4,6 +4,8 @@ import Layout from '../component/Layout'
 import Profil from '../page/Profil'
 import Erreur from '../page/error'
 
+
+// Generate path for route function
 const router = createBrowserRouter([
     {
         path: '/',
@@ -19,6 +21,10 @@ const router = createBrowserRouter([
 ])
 
 
+/**
+* Create route for render the appropriate UI
+* @return { ReactDOM }
+*/
 
 function Route() {
     return <RouterProvider router={router} />

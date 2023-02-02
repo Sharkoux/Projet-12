@@ -1,6 +1,8 @@
+
+// Import component, hook and data asset
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import useCallData from '../hook/useCallData'
+import useCallUserData from '../hook/useCallUserData'
 import Erreur from './error'
 import styled from 'styled-components'
 import Activité from '../component/Activité'
@@ -14,7 +16,7 @@ import RadarCharts from '../component/Radar'
 import Score from '../component/Score'
 
 
-
+// Rules css (styled-component) 
 const DivProfil = styled.div`
     margin: 4%;
     margin-top: 60px;
@@ -64,42 +66,53 @@ const DivProfil = styled.div`
     }
 `
 
+
+
+/**
+ * Call data from API and return Profile page
+ * @return { ReactDOM }
+ */
+
 function Profil() {
     let res;
+    // Retrieve ID with hook useParams
     const { id } = useParams()
-    const { userData, userActivity, userSession, userPerformance, error } = useCallData(id)
 
+    // Call data user with hook useCallUserData (params: ID)
+    const { userData, error } = useCallUserData(id)
+
+    //If error, return Error Page
     if (error) {
         return <Erreur />
     }
 
-    if (userData.keyData) {
-
+   
+    // Format Data from object list to array with add name and icon 
+    if (userData.data?.keyData) {
         const formatData = {
             calorieCount: { label: 'Calories', icon: { energy } },
             carbohydrateCount: { label: 'Glucides', icon: { apple } },
-            lipIdCount: { label: 'Lipides', icon: { lipide } },
+            lipidCount: { label: 'Lipides', icon: { lipide } },
             proteinCount: { label: 'Proteines', icon: { proteine } },
         }
 
-        res = Object.entries(userData?.keyData).map(([key, value], index) => {
-            return { key, value, label: formatData[key].label, icon: formatData[key].icon }
+        res = Object.entries(userData.data.keyData).map(([key, value], index) => {
+            return { key, value, label: formatData[key]?.label, icon: formatData[key]?.icon }
         })
 
     }
-
-    console.log(userData)
-
+    console.log(res)
+    // Return Page Profil component with children component and generate Tag
     return (
         <DivProfil>
             <h1 className='titleTxt'>Bonjour <span className='NameColor'>{userData?.data?.userInfos?.firstName}</span></h1>
             <p className='title'>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
             <div className='ActivityContainer'>
-                <Activité userActivity={userActivity} />
+                <Activité />
 
                 <div className='ChartsContainer'>
-                    <Durée datas={userSession} />
-                    <RadarCharts datas={userPerformance} />
+                    <Durée />
+                    <RadarCharts />
                     <Score datas={userData} />
                 </div>
             </div>
