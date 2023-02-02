@@ -101,7 +101,7 @@ function Profil() {
         })
 
     }
-    console.log(res)
+ 
     // Return Page Profil component with children component and generate Tag
     return (
         <DivProfil>
