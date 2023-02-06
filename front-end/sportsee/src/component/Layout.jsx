@@ -2,7 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import Header from './header'
-import Dashboard from './dashboard'
+import Sidebar from './sidebar'
 
 // Global rules css (styled-component)
 const GlobalStyle = createGlobalStyle`
@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 
 
 /**
- * Uses the layout so that the header and the dashboard are present on all pages
+ * Uses the layout so that the header and the Sidebar are present on all pages
  * @param { ReactElement } children
  * @return { ReactElement }
  */
@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
     <React.Fragment>
       <GlobalStyle />
       <Header />
-      <Dashboard />
+      <Sidebar />
       <main>
         {children}
         <Outlet />{' '}

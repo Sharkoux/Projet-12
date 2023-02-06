@@ -38,11 +38,11 @@ const ContainerDash = styled.div`
 `
 
 /**
- * Generate dashboard component
+ * Generate Sidebar component
  * @return { ReactElement }
  */
 
-function Dashboard() {
+function Sidebar() {
 
 
     return (
@@ -66,4 +66,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard
+export default Sidebar
