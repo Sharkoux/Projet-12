@@ -20,7 +20,7 @@ function RadarCharts() {
   // Retrieve ID with hook useParams
   const { id } = useParams()
   // Call data Performance for user with hook useCallUserPerformance (params: ID)
-  const { userPerformance, error } = useCallUserPerformance(id)
+  const { userPerformance } = useCallUserPerformance(id)
 
 
   //Return if not data 

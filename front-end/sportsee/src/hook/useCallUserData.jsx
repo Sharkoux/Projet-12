@@ -10,7 +10,7 @@ import apple from '../asset/apple.png'
 /**
  * Call class API for get Data and return
  * @param { Number } id
- * @return { Array }
+ * @return { Object }
  */
 function useCallUserData(id) {
     const [userData, setUserData] = useState({ formated: [], raw: {}, score: {} })

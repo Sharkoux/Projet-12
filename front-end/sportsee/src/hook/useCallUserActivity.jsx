@@ -5,7 +5,7 @@ import API from '../API/Api'
 /**
  * Call class API for get Data and return
  * @param { Number } id
- * @return { Array }
+ * @return { Object }
  */
 
 function useCallUserActivity(id) {

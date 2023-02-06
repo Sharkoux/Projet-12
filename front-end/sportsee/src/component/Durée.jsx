@@ -30,7 +30,7 @@ export default function Durée() {
   // Retrieve ID with hook useParams
   const { id } = useParams()
   // Call data Session for user with hook useCallUserSession (params: ID)
-  const { userSession, error } = useCallUserSession(id)
+  const { userSession } = useCallUserSession(id)
 
 
   //if no data, return

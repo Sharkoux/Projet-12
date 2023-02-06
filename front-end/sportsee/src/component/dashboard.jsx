@@ -49,16 +49,16 @@ function Dashboard() {
         <ContainerDash>
             <div className='ContainerLink'>
                 <NavLink>
-                    <img src={icon1}></img>
+                    <img src={icon1} alt="icon1"></img>
                 </NavLink>
                 <NavLink>
-                    <img src={icon2}></img>
+                    <img src={icon2} alt="icon2"></img>
                 </NavLink>
                 <NavLink>
-                    <img src={icon3}></img>
+                    <img src={icon3} alt="icon3"></img>
                 </NavLink>
                 <NavLink>
-                    <img src={icon4}></img>
+                    <img src={icon4} alt="icon4"></img>
                 </NavLink>
             </div>
             <p className='TxtCopi'>Copiryght, SportSee 2020</p>
