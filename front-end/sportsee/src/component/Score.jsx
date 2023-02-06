@@ -3,38 +3,25 @@ import {
   PieChart,
   Pie
 } from "recharts";
-import { PropTypes } from "prop-types";
+import PropTypes from 'prop-types';
 
 
 /**
  * Generates a display of scores with data User
  * @param { Object } 
- * @return { ReactDOM }
+ * @return { ReactElement }
  */
 
-export default function Score({ datas }) {
+ function Score({ datas }) {
 
-  let scores;
-  // Init color
-  const color = ["red", "white"]
-
-  // If name data is different
-  if (datas.data?.todayScore) {
-    scores = datas.data.todayScore;
-  }
-  if (datas.data?.score) {
-    scores = datas.data.score
-  }
-
-
-  const array = [{ todayScore: scores, fill: "red" }, { todayScore: 1, fill: "white" }]
+  const array = [{ todayScore: datas.scores, fill: "red" }, { todayScore: 1, fill: "white" }]
 
   // Return Score component
   return (
     <PieChart width={260} height={250} style={{ background: '#FBFBFB' }}>
       <text x={20} y={25} fontSize={16} fontWeight={'bold'}>Score</text>
       <text x={130} y={125} textAnchor="middle" fontSize={22} fontWeight={'bold'}>
-        {scores * 100}%
+        {datas.scores * 100}%
       </text>
       <text x={130} y={155} textAnchor="middle" fontSize={16}>
         de votre objectif
@@ -43,3 +30,9 @@ export default function Score({ datas }) {
     </PieChart>
   )
 }
+
+Score.propTypes = {
+  datas: PropTypes.object,
+}
+
+export default Score

@@ -16,7 +16,7 @@ const Links = styled(Link)`
 
 /**
  * Add component Page Error
- * @return { ReactDOM }
+ * @return { ReactElement }
  */
 
 function Erreur() {

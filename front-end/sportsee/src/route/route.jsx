@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 
 /**
 * Create route for render the appropriate UI
-* @return { ReactDOM }
+* @return { ReactElement }
 */
 
 function Route() {

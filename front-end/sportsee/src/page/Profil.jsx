@@ -7,10 +7,6 @@ import Erreur from './error'
 import styled from 'styled-components'
 import Activité from '../component/Activité'
 import Tag from '../component/tag'
-import energy from '../asset/energy.png'
-import proteine from '../asset/protein-icon.png'
-import lipide from '../asset/cheeseburger.png'
-import apple from '../asset/apple.png'
 import Durée from '../component/Durée'
 import RadarCharts from '../component/Radar'
 import Score from '../component/Score'
@@ -70,42 +66,27 @@ const DivProfil = styled.div`
 
 /**
  * Call data from API and return Profile page
- * @return { ReactDOM }
+ * @return { ReactElement }
  */
 
 function Profil() {
-    let res;
+  
     // Retrieve ID with hook useParams
     const { id } = useParams()
 
     // Call data user with hook useCallUserData (params: ID)
     const { userData, error } = useCallUserData(id)
 
-    //If error, return Error Page
+    // If error, return Error Page
     if (error) {
-        return <Erreur />
+    return <Erreur />
     }
-
+  
    
-    // Format Data from object list to array with add name and icon 
-    if (userData.data?.keyData) {
-        const formatData = {
-            calorieCount: { label: 'Calories', icon: { energy } },
-            carbohydrateCount: { label: 'Glucides', icon: { apple } },
-            lipidCount: { label: 'Lipides', icon: { lipide } },
-            proteinCount: { label: 'Proteines', icon: { proteine } },
-        }
-
-        res = Object.entries(userData.data.keyData).map(([key, value], index) => {
-            return { key, value, label: formatData[key]?.label, icon: formatData[key]?.icon }
-        })
-
-    }
- 
     // Return Page Profil component with children component and generate Tag
     return (
         <DivProfil>
-            <h1 className='titleTxt'>Bonjour <span className='NameColor'>{userData?.data?.userInfos?.firstName}</span></h1>
+            <h1 className='titleTxt'>Bonjour <span className='NameColor'>{userData.raw.data?.userInfos?.firstName}</span></h1>
             <p className='title'>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
             <div className='ActivityContainer'>
                 <Activité />
@@ -113,11 +94,11 @@ function Profil() {
                 <div className='ChartsContainer'>
                     <Durée />
                     <RadarCharts />
-                    <Score datas={userData} />
+                    <Score datas={userData?.score} />
                 </div>
             </div>
             <div className='TagContainer'>
-                {res?.map((item, index) => {
+                {userData.formated.map((item, index) => {
                     return (
                         <Tag keydata={item} key={index} />
                     )

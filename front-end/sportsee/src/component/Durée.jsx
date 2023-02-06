@@ -22,33 +22,22 @@ const Tooltips = styled.div`
 
 /**
  * Generate LineCharts with user data
- * @return { ReactDOM }
+ * @return { ReactElement }
  */
 
 
 export default function Durée() {
-    // Retrieve ID with hook useParams
+  // Retrieve ID with hook useParams
   const { id } = useParams()
   // Call data Session for user with hook useCallUserSession (params: ID)
   const { userSession, error } = useCallUserSession(id)
 
 
-
   //if no data, return
-  if(!userSession.data?.sessions) {
+  if (!userSession.length) {
     return
   }
 
-  //Create Dictionary for format data
-  const dict = [
-  {data: "L", position: 1},
-  {data: "M", position: 2},
-  {data: "M", position: 3},
-  {data: "J", position: 4},
-  {data: "V", position: 5},
-  {data: "S", position: 6},
-  {data: "D", position: 7}
-]
 
   //Create Custom Tooltip  
   const CustomTooltip = ({ active, payload }) => {
@@ -80,28 +69,20 @@ export default function Durée() {
     );
   }
 
-// Format Data, add days and position
-  const resp = userSession.data.sessions.map((item) => {
-    const meta = dict.find(g => g.position === Number(item.day));
-    const global = { ...item, ...meta };
-    const {day, ...rest} = global;
-    return rest
-  }).sort((a, b) => a.position - b.position);
-
   // Return LineChart component
   return (
-    <LineChart width={260} height={250} data={resp}
+    <LineChart width={260} height={250} data={userSession}
       margin={{ top: 5, right: 12, left: 12, bottom: 5 }} style={{ background: '#FF0000', borderRadius: 5 }}>
       <text
         x='7%'
         y='10%'
         dy={+10}
-        style={{ fontSize: 15, fill: '#FFFFFF', opacity: '0.5'}}
+        style={{ fontSize: 15, fill: '#FFFFFF', opacity: '0.5' }}
       >
         Durée moyenne des sessions
       </text>
-      <XAxis tickLine={false} axisLine={false}  dataKey='data' style={{fontSize: 12, color: '#FFFFFF'}}  />
-      <YAxis tickLine={false} axisLine={false} hide={true} padding={{top: 70}} />
+      <XAxis tickLine={false} axisLine={false} dataKey='data' style={{ fontSize: 12, color: '#FFFFFF' }} />
+      <YAxis tickLine={false} axisLine={false} hide={true} padding={{ top: 70 }} />
       <Tooltip content={<CustomTooltip />} />
       <Line type="monotone" dataKey="sessionLength" stroke="white" legendType="none" />
       <ReferenceArea shape={<ReferenceBands />} />

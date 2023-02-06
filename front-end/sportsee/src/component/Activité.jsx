@@ -36,7 +36,7 @@ const ContainerBarChart = styled.div`
 
 /**
  * Generate chartBar with user data
- * @return { ReactDOM }
+ * @return { ReactElement }
  */
 
 export default function Activité() {

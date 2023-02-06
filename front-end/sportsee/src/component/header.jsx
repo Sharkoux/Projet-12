@@ -30,7 +30,7 @@ const ContainerLink = styled.div`
 
 /**
  * Generate Header component
- * @return { ReactDOM }
+ * @return { ReactElement }
  */
 
 function Header() {

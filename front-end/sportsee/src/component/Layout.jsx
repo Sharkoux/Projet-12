@@ -22,8 +22,8 @@ const GlobalStyle = createGlobalStyle`
 
 /**
  * Uses the layout so that the header and the dashboard are present on all pages
- * @param { ReactDOM } children
- * @return { ReactDOM }
+ * @param { ReactElement } children
+ * @return { ReactElement }
  */
 
 const Layout = ({ children }) => {

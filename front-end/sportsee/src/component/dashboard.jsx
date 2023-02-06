@@ -19,7 +19,7 @@ const ContainerDash = styled.div`
     align-items: center;
     position: absolute;
     @media only screen and (max-width : 1500px) {
-        height: 130%;
+        height: 120%;
     }
     .ContainerLink {
         display: flex;
@@ -39,8 +39,9 @@ const ContainerDash = styled.div`
 
 /**
  * Generate dashboard component
- * @return { ReactDOM }
+ * @return { ReactElement }
  */
+
 function Dashboard() {
 
 
