@@ -32,7 +32,7 @@ function useCallUserPerformance(id) {
                         { kind: 5, trad: "Vitesse", position: 1 },
                         { kind: 6, trad: "Intensité", position: 0 }]
 
-                    console.log(data)
+                  
                     // Format Data, add traduction and position
                     const resp = data?.data?.data?.map((item) => {
 
@@ -41,7 +41,7 @@ function useCallUserPerformance(id) {
                         const { kind, ...rest } = global;
                         return rest
                     }).sort((a, b) => a.position - b.position);
-                    console.log(resp)
+                
                     setUserPerformance(resp);
                 })
                 .catch((err) => {

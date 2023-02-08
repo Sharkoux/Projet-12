@@ -26,6 +26,7 @@ function useCallUserData(id) {
                 .then((data) => {
                     let res
                     let scores
+                    
                     // Format Data from object list to array with add name and icon 
                     if (data.data.keyData) {
                         const formatData = {
@@ -38,7 +39,7 @@ function useCallUserData(id) {
                          res = Object.entries(data.data.keyData).map(([key, value], index) => {
                             return { key, value, label: formatData[key]?.label, icon: formatData[key]?.icon }
                         })
-
+                        
                     }
 
                     // If name data score is different

@@ -33,13 +33,12 @@ const TagContainer = styled.div`
 
 function Tag({ keydata }) {
 
-
     // Return Tag component
     return (
         <TagContainer >
             <img className="ImgTag" src={Object.values(keydata.icon)[0]} />
             <div>
-                <p className="TagValue">{keydata.key === 'calorieCount' ? new Intl.NumberFormat('en-IN', { style: 'decimal', maximumFractionDigits: 0 }).format(keydata?.value) + "kCal"
+                <p className="TagValue">{keydata.key === 'calorieCount' ? new Intl.NumberFormat('en-IN', { style: 'decimal' }).format(keydata?.value) + "kCal"
                     : new Intl.NumberFormat('fr', { style: 'unit', unit: 'gram' }).format(keydata?.value)}</p>
                 <p className="TagData">{keydata.label}</p>
             </div>

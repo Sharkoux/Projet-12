@@ -45,6 +45,11 @@ export default function Activité() {
   // Call data Activity for user with hook useCallUserActivity (params: ID)
   const { userActivity } = useCallUserActivity(id)
   
+  if(!userActivity) {
+    return
+  }
+
+
   // Add CustomToolTip 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
