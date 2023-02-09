@@ -7,6 +7,10 @@ import Erreur from '../page/error'
 
 // Generate path for route function
 const router = createBrowserRouter([
+    //{
+    //  path: '/',
+    //  element: <LoginElement />
+    //},
     {
         path: '/',
         element: <Layout />,
